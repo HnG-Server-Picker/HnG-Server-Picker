@@ -7,7 +7,8 @@ If you are from a smaller region such as Oceania, South America or Asia you coul
 
 <img width="544" height="549" alt="Screenshot_1" src="https://github.com/user-attachments/assets/406057f7-30aa-45d8-a598-e3433e973c70" />
 
-The app is available in English, Chinese, German, Korean, Portuguese, Spanish, Russian, Thai and Vietnamese. Some of the translations may not be accurate. 
+The app is available in English, Chinese, German, Korean, Portuguese, Spanish, Russian, Thai and Vietnamese. 
+Some of the translations may not be accurate. 
 
 
 
