@@ -19,7 +19,7 @@ The app is available in English, Chinese, German, Korean, Portuguese, Spanish, R
 
 ⬇️ **Download**
 
-[Download here](https://github.com/TrickshotOCE/HnG-Server-Picker/releases)
+[Download here](https://github.com/HnG-Server-Picker/HnG-Server-Picker/releases)
 
 After downloading the app you will be prompted with a "Windows protected your PC" message. This happens because the app isn't digitally signed (code-signing certificates cost money) and hasn't been downloaded enough times yet for Microsoft to recognize it as "trusted."
 
