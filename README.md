@@ -1,7 +1,7 @@
 # HnG-Server-Picker
 ℹ️**Information**
 
-The H&G Server Picker app lets you decide which server(s) you would like to play on, and no matter how long you spend in queue, you will only find matches on those servers.
+H&G Server Picker lets you decide which server(s) you would like to play on, and no matter how long you spend in queue, you will only find matches on those servers.
 
 If you are from a smaller region such as Oceania, South America or Asia you could block your home server(s) to skip the initial time it takes for the matchmaker to start searching in other regions, which could be useful if not many players in your region are online and you wanted fast consecutive matches on the next best server.
 
