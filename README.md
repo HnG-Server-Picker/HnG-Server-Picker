@@ -61,6 +61,3 @@ I recommend clicking "Block All" on the app and opening H&G. Open your H&G sync 
 
    No this is not cheating, no game files are being changed. This application only blocks servers (IP's) using the windows firewall. I have not checked with the developers if this is allowed, so use at your own risk. 
 
-❤️**Special Mention**
-
-Big shoutout to Beng_ who made a guide in 2022 on blocking H&G IP's using the windows firewall. Without this, I wouldn't of been able to create this app, so big thanks to him. You can find his guide here: https://hngguide.dudwire.com/
