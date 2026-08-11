@@ -31,13 +31,16 @@ Click More info on the warning screen -> Click Run anyway.
 The app uses the windows firewall to block the IP's. Creating or deleting Windows Firewall rules requires admin privileges — this is a Windows restriction, not something the app chooses. When you launch it, Windows will show a UAC prompt ("Do you want to allow this app to make changes to your device?"); you need to accept it for the app to work at all. If you decline, the app will close, since it can't do anything useful without firewall access.
 
 
-😀**Checking it works**
-I recommend clicking "Block All" on the app and opening H&G. Open your H&G sync and look for ping: and pinging: (IP's). They should all say :Timeout as shown in the screenshot below. If you see any IP's that say "OK", they are not blocked. You can add the IP manually yourself, or wait for an update. 
+✅**Checking it works**
+
+I recommend clicking "Block All" on the app and opening H&G. Open your H&G sync and look for ping:(IP). They should all say :Timeout as shown in the screenshot below. If you see any IP's that say "OK" at the end, they are not blocked. You can add the IP manually yourself, or wait for an update. 
 
 <img width="188" height="135" alt="Screenshot_7" src="https://github.com/user-attachments/assets/82f43cab-1417-43ee-bde8-c24b1be7f669" />
 
 
+
 ❔**FAQ**
+
 1. Can i leave H&G open when blocking or unblocking servers?
    
    It is highly recommended to restart H&G every time you make any changes.
@@ -46,11 +49,18 @@ I recommend clicking "Block All" on the app and opening H&G. Open your H&G sync 
 
    Yes. Blocking the servers doesn't restrict you from joining a friends match, or being a squad member and joining a match.
 
-3. Is this cheating? Can I get banned for this?
+3. Do I need to block / unblock servers every time I open the app?
 
-   No. This application only blocks servers (IP's) using the windows firewall. I have not checked with the developers if this is allowed, but no game files are being changed so it is safe to use. 
+   No. The app will remember your previously blocked severs, and selected language from when you last had it open.
 
+4. What happens when I close the app?
+
+   When closed, all firewall rules will be deleted instantly and all servers will be in an unblocked state. 
+
+5. Is this cheating? Can I get banned for this?
+
+   No this is not cheating, no game files are being changed. This application only blocks servers (IP's) using the windows firewall. I have not checked with the developers if this is allowed, so use at your own risk. 
 
 ❤️**Special Mention**
 
-Big shoutout to Beng_ who made a guide in 2022 on blocking H&G IP's using the windows firewall. Without this, I wouldn't of been able to create this app, so big thanks to him. You can find the guide here: https://hngguide.dudwire.com/
+Big shoutout to Beng_ who made a guide in 2022 on blocking H&G IP's using the windows firewall. Without this, I wouldn't of been able to create this app, so big thanks to him. You can find his guide here: https://hngguide.dudwire.com/
