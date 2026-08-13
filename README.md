@@ -3,12 +3,13 @@
 
 H&G Server Picker lets you decide which server(s) you would like to play on, and no matter how long you spend in queue, you will only find matches on those servers.
 
-IMPORTANT: The developers are constantly adding and removing servers that have different IP's. If you find that you are popping into matches with high ping, it's probably because they added a new server. If you open your H&G Sync tab and scroll down to where you see /M, you can look along that line until you see "actionhost= (IP HERE)". Copy this IP, and in the app click "Add Server". Give it a name, paste the IP, and assign a flag. 
+IMPORTANT: The developers are constantly adding and removing servers that have different IP's. If you find that you are popping into matches with high ping, it's probably because they added a new server. If you open your H&G Sync tab and scroll down to where you see /M, you can look along that line until you see "actionhost = (IP HERE)". Copy this IP, and in the app click "Add Server". Give it a name, paste the IP, and assign a flag. 
 
-If you don't want to add each server manually this way, I will be updating the "Releases" tab with new versions of the app when they add new servers. So you can just come to this page and download it again. 
+If you don't want to add each server manually this way, I will be updating the "Releases" tab with new versions when they add new servers. So you can just come to this page and download it again. 
 
 
-<img width="544" height="549" alt="Screenshot_1" src="https://github.com/user-attachments/assets/406057f7-30aa-45d8-a598-e3433e973c70" />
+<img width="540" height="552" alt="Screenshot_9" src="https://github.com/user-attachments/assets/8d6473aa-b405-4bb6-a8d4-2acf5140fde1" />
+
 
 
 The app is available in English, Chinese, German, Korean, Portuguese, Spanish, Russian, Thai and Vietnamese. 
