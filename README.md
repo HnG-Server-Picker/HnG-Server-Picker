@@ -67,7 +67,7 @@ You can also search for Windows Defender Firewall and go to "Outbound Rules" whe
 
 7. I keep seeing this "Unable to ping game servers" message. What is going on?
 
-   Before searching for a match you need to let H&G sync actually ping the IP's that you have unblocked. When H&G opens just give it a minute and it should be fine.
+   Before searching for a match you need to let H&G sync actually ping the IP's that you have unblocked. When H&G opens just give it a minute before you start searching for a match and it should be fine.
 
    <img width="952" height="565" alt="Screenshot_10" src="https://github.com/user-attachments/assets/2c887822-838d-49f3-accc-1d70aa77a2aa" />
 
