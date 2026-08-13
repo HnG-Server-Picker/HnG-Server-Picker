@@ -59,5 +59,12 @@ You can also search for Windows Defender Firewall and go to "Outbound Rules" whe
 
 5. Is this cheating? Can I get banned for this?
 
-   No this is not cheating, no game files are being changed. This application only blocks servers (IP's) using the windows firewall. I have not checked with the developers if this is allowed, so use at your own risk. 
+   No this is not cheating, no game files are being changed. This application only blocks servers (IP's) using the windows firewall. I have not checked with the developers if this is allowed, so use at your own risk.
+
+6. I keep seeing this "Unable to ping game servers" message. What is going on?
+
+   Before searching for a match you need to let H&G sync actually ping the IP's that you have unblocked. When H&G opens just give it a minute and it should be fine.
+
+   <img width="952" height="565" alt="Screenshot_10" src="https://github.com/user-attachments/assets/2c887822-838d-49f3-accc-1d70aa77a2aa" />
+
 
