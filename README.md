@@ -61,7 +61,11 @@ You can also search for Windows Defender Firewall and go to "Outbound Rules" whe
 
    No this is not cheating, no game files are being changed. This application only blocks servers (IP's) using the windows firewall. I have not checked with the developers if this is allowed, so use at your own risk.
 
-6. I keep seeing this "Unable to ping game servers" message. What is going on?
+6. Why do some servers say "N/A" and not give a ping reading?
+
+  I'm honestly not sure, but it's nothing on your end. The server itself simply can't be pinged so no reading can be shown. This happens for the Singapore and Australian servers, as well as one French and German server.
+
+7. I keep seeing this "Unable to ping game servers" message. What is going on?
 
    Before searching for a match you need to let H&G sync actually ping the IP's that you have unblocked. When H&G opens just give it a minute and it should be fine.
 
