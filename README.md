@@ -41,7 +41,7 @@ You can also search for Windows Defender Firewall and go to "Outbound Rules" whe
 
 ❔**FAQ**
 
-1. Can i leave H&G open when blocking or unblocking servers?
+1. Can I leave H&G open when blocking or unblocking servers?
    
    It is highly recommended to restart H&G every time you make any changes.
 
