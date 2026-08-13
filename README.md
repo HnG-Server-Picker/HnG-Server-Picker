@@ -14,9 +14,9 @@ If you don't want to add each server manually this way, I will be updating the "
 
 The app is available in English, Chinese, German, Korean, Portuguese, Spanish, Russian, Thai and Vietnamese. 
 
-⬇️ **Download**
+⬇️ **Download** 
 
-[Download here](https://github.com/HnG-Server-Picker/HnG-Server-Picker/releases)
+[Download here](https://github.com/HnG-Server-Picker/HnG-Server-Picker/releases) - Download the .exe file.
 
 After downloading the app you will be prompted with a "Windows protected your PC" message. This happens because the app isn't digitally signed (code-signing certificates cost money).
 
