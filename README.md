@@ -8,8 +8,7 @@ IMPORTANT: The developers are constantly adding and removing servers that have d
 If you don't want to add each server manually this way, I will be updating the "Releases" tab with new versions when they add new servers. So you can just come to this page and download it again. 
 
 
-<img width="540" height="552" alt="Screenshot_9" src="https://github.com/user-attachments/assets/8d6473aa-b405-4bb6-a8d4-2acf5140fde1" />
-
+<img width="541" height="596" alt="Screenshot_11" src="https://github.com/user-attachments/assets/f7215efb-5a80-40b3-8166-89e02a9471fc" />
 
 
 The app is available in English, Chinese, German, Korean, Portuguese, Spanish, Russian, Thai and Vietnamese. 
