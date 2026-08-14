@@ -63,7 +63,7 @@ You can also search for Windows Defender Firewall and go to "Outbound Rules" whe
 
 6. Why do some servers say "N/A" and not give a ping reading?
 
-  I'm honestly not sure, but it's nothing on your end. The server itself simply can't be pinged so no reading can be shown. This happens for the Singapore and Australian servers, as well as one French and German server.
+   I'm honestly not sure, but it's nothing on your end. The server itself simply can't be pinged so no reading can be shown. This happens for the Singapore and Australian servers, as well as one French and German server.
 
 7. I keep seeing this "Unable to ping game servers" message. What is going on?
 
