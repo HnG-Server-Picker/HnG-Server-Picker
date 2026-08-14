@@ -17,7 +17,7 @@ The app is available in English, Chinese, German, Korean, Portuguese, Spanish, R
 
 [Download here](https://github.com/HnG-Server-Picker/HnG-Server-Picker/releases) - Click the .exe file.
 
-After downloading the app you will be prompted with a "Windows protected your PC" message. This happens because the app isn't digitally signed (code-signing certificates cost money).
+After downloading you will be prompted with a "Windows protected your PC" message. This happens because the app isn't digitally signed (code-signing certificates cost money).
 
 For the app to work:
 
