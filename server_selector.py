@@ -31,13 +31,13 @@ except ImportError:
     TRAY_AVAILABLE = False
 
 APP_NAME = "ServerSelector"
-VERSION = "1.1"
+VERSION = "1.2"
 GITHUB_API_LATEST = "https://api.github.com/repos/HnG-Server-Picker/HnG-Server-Picker/releases/latest"
 GITHUB_RELEASES_URL = "https://github.com/HnG-Server-Picker/HnG-Server-Picker/releases"
 RULE_PREFIX = "ServerPicker_"
 BLOCK_PORT = 25000
 CONFIG_PATH = os.path.join(os.path.expanduser("~"), ".server_selector.json")
-CONFIG_VERSION = 2  
+CONFIG_VERSION = 5  
 SETTINGS_PATH = os.path.join(os.path.expanduser("~"), ".server_selector_settings.json")
 FLAG_CACHE_DIR = os.path.join(os.path.expanduser("~"), ".server_selector_flags")
 
@@ -586,7 +586,7 @@ COLOR_PING_RED_DARK = "#7f0000"
 COLOR_RED = "#c62828"
 COLOR_RED_ACTIVE = "#8e1c1c"
 
-# Pre-loaded known Heroes & Generals servers
+# Known Heroes & Generals servers
 DEFAULT_SERVERS = {
     "France: Roubaix 1":      {"ip": "37.187.226.17",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
     "France: Roubaix 2":      {"ip": "149.202.215.48", "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
@@ -594,14 +594,19 @@ DEFAULT_SERVERS = {
     "France: Roubaix 4":      {"ip": "51.91.74.237",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
     "France: Roubaix 5":      {"ip": "51.91.214.145",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
     "France: Roubaix 6":      {"ip": "51.91.214.138",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
+    "France: Roubaix 7":      {"ip": "164.132.206.197","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
+    "France: Roubaix 8":      {"ip": "164.132.200.214","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
     "Poland: Warsaw":         {"ip": "51.83.236.30",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#FFFFFF", "#DC143C"], "flag_orientation": "horizontal"},
     "Germany: Wehlheiden":    {"ip": "51.77.67.200",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "Germany: Dietkirchen 1": {"ip": "51.89.21.239",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "Germany: Dietkirchen 2": {"ip": "135.125.188.83", "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "Germany: Dietkirchen 3": {"ip": "135.125.188.85", "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
+    "Germany: Dietkirchen 4": {"ip": "135.125.188.42", "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "England: London 1":      {"ip": "54.37.245.86",   "region": "EU", "flag_type": "england", "flag_colors": [], "flag_orientation": "solid"},
     "England: London 2":      {"ip": "54.37.245.98",   "region": "EU", "flag_type": "england", "flag_colors": [], "flag_orientation": "solid"},
-    "Canada: Quebec":         {"ip": "144.217.77.9",   "region": "Canada", "flag_type": "stripes", "flag_colors": ["#FF0000", "#FFFFFF", "#FF0000"], "flag_orientation": "vertical"},
+    "England: London 3":      {"ip": "145.239.204.99", "region": "EU", "flag_type": "england", "flag_colors": [], "flag_orientation": "solid"},
+    "England: London 4":      {"ip": "145.239.204.144","region": "EU", "flag_type": "england", "flag_colors": [], "flag_orientation": "solid"},
+    "Canada: Beauharnois":         {"ip": "144.217.77.9",   "region": "Canada", "flag_type": "stripes", "flag_colors": ["#FF0000", "#FFFFFF", "#FF0000"], "flag_orientation": "vertical"},
     "USA: Dallas":            {"ip": "23.29.125.122",  "region": "USA", "flag_type": "us", "flag_colors": [], "flag_orientation": "solid"},
     "USA: Atlanta":           {"ip": "162.213.248.83", "region": "USA", "flag_type": "us", "flag_colors": [], "flag_orientation": "solid"},
     "Australia: Sydney":      {"ip": "139.99.149.14",  "region": "APAC", "flag_type": "au", "flag_colors": [], "flag_orientation": "solid"},
@@ -622,7 +627,6 @@ FLAG_PRESETS = {
     "Other / Unknown": {"flag_type": "stripes", "flag_colors": ["#9AA0A6"], "flag_orientation": "solid"},
 }
 
-# Country-name -> ISO 3166-1 alpha-2 (or subdivision) code used by flagcdn.com
 _FLAG_COUNTRY_CODES = {
     "France":          "fr",
     "Poland":          "pl",
@@ -708,9 +712,6 @@ SINGLE_RULE_NAME = f"{RULE_PREFIX}Block"
 
 
 def sync_block_rule(ips) -> tuple:
-    """Replaces the single ServerPicker firewall rule's IP scope with the
-    given list of IPs (one rule total, instead of one rule per server).
-    If ips is empty, the rule is removed entirely."""
     subprocess.run(
         ["netsh", "advfirewall", "firewall", "delete", "rule", f"name={SINGLE_RULE_NAME}"],
         capture_output=True, text=True, creationflags=CREATE_NO_WINDOW
@@ -772,11 +773,6 @@ def ping_color(ms):
         return COLOR_PING_RED_DARK
 
 
-# Macro-region tiers for the default "sort by region" view (selected when
-# the Server column is clicked, and also what a brand-new install sees
-# first): Europe, then North America, then Asia, then Australia last.
-# Anything unrecognized (e.g. custom-added servers) sorts after all of
-# these.
 def _region_group(name: str, info: dict) -> int:
     region = info.get("region", "")
     if region == "EU":
@@ -784,8 +780,6 @@ def _region_group(name: str, info: dict) -> int:
     if region in ("USA", "Canada"):
         return 1
     if region == "APAC":
-        # Australia shares the "APAC" region value with Singapore/Hong
-        # Kong, so it needs its own check to land in the last tier.
         if info.get("flag_type") == "au" or name.startswith("Australia"):
             return 3
         return 2
@@ -825,9 +819,6 @@ def _fetch_flag_png(country_code: str, width: int = 40):
 
 
 def make_flag_image(info: dict, name: str = "", width: int = 40, height: int = 26):
-    """Returns a tk.PhotoImage for the given server.
-    Tries flagcdn.com first; falls back to a solid grey rectangle on failure.
-    Requires PIL/Pillow for PNG decoding."""
     if PIL_AVAILABLE:
         code = _country_code_for_server(name, info)
         if code:
@@ -856,8 +847,7 @@ def make_flag_image(info: dict, name: str = "", width: int = 40, height: int = 2
 
 
 class FlagPickerDialog(simpledialog.Dialog):
-    """A simpledialog.Dialog with a read-only Combobox dropdown instead of
-    a free-text entry. Centers over its parent the same way askstring does."""
+    
     def __init__(self, parent, title, prompt, values, initial=None):
         self.prompt = prompt
         self.values = values
@@ -882,10 +872,6 @@ class FlagPickerDialog(simpledialog.Dialog):
 
 
 class SettingsDialog(tk.Toplevel):
-    """Standalone Settings window. Currently holds just the 'check for
-    updates on startup' preference. The checkbox persists its value, but
-    nothing in the app reads that value yet - wiring it into an actual
-    startup update-check is a follow-up."""
 
     def __init__(self, parent, app):
         super().__init__(parent)
@@ -935,10 +921,7 @@ class ServerSelectorApp(tk.Tk):
         self.withdraw()
         self._style = ttk.Style(self)
         try:
-            # 'clam' draws scrollbars at a fixed size. Windows' native
-            # theme (which classic Tk scrollbars pick up automatically)
-            # renders a "thin at rest, fat on hover/click" scrollbar that
-            # can't be turned off directly, so we opt out of it entirely.
+
             self._style.theme_use("clam")
         except Exception:
             pass
@@ -1030,8 +1013,8 @@ class ServerSelectorApp(tk.Tk):
         else:
             self.sort_state = {"column": "name", "reverse": False}
         self._last_clicked_name = None
-        self._undo_stack = []  # batches of removed servers, for Ctrl+Z
-        self._redo_stack = []  # batches popped off the undo stack, for Ctrl+Y
+        self._undo_stack = []  
+        self._redo_stack = []  
 
         self._build_ui()
         self._render_rows()
@@ -1053,8 +1036,7 @@ class ServerSelectorApp(tk.Tk):
 
         self._start_tray_icon()
 
-        # Pre-warm the flag image cache in the background so real flags
-        # swap in without freezing the UI on first launch.
+        # Pre-warm the flag image cache in the background so real flags swap in without freezing the UI on first launch.
         threading.Thread(target=self._prefetch_flags, daemon=True).start()
 
         self.deiconify()
@@ -1434,9 +1416,7 @@ class ServerSelectorApp(tk.Tk):
             "status": status_label, "status_cell": status_cell,
         }
 
-        # Bind click handling (with Shift+click range-select support) to the
-        # row and every descendant widget inside it, so clicking anywhere on
-        # the row triggers selection correctly.
+        # Bind click handling (with Shift+click range-select support) to the row and every descendant widget inside it, so clicking anywhere on the row triggers selection correctly.
         self._bind_row_click_recursive(row, name)
 
     def _bind_row_click_recursive(self, widget, name):
@@ -1522,8 +1502,7 @@ class ServerSelectorApp(tk.Tk):
         self.status_var.set(self.tr("status_ping_complete"))
 
     # ------------------------------------------------------------------
-    # Persisted block state: remember which servers were blocked so they
-    # can be restored automatically the next time the app is opened.
+    # Persisted block state: remember which servers were blocked so they can be restored automatically the next time the app is opened.
     # ------------------------------------------------------------------
     def _save_blocked_state(self):
         blocked_names = [n for n, v in self.blocked_state.items() if v]
@@ -1690,8 +1669,7 @@ class ServerSelectorApp(tk.Tk):
         self.status_var.set(self.tr("status_removed", count=len(names)))
 
     # ------------------------------------------------------------------
-    # Undo / redo: covers server removal. Ctrl+Z restores a removed batch
-    # (including its firewall block state); Ctrl+Y removes it again.
+    # Undo / redo
     # ------------------------------------------------------------------
     def _undo_last_action(self, event=None):
         if not self._undo_stack:
@@ -1831,11 +1809,7 @@ class ServerSelectorApp(tk.Tk):
         dialog.deiconify()
 
     # ------------------------------------------------------------------
-    # Tray icon: shown the whole time the app is running (lets the user
-    # find it under the "show hidden icons" arrow), but it does NOT
-    # minimize-to-tray - the main window stays open normally, and closing
-    # via the X (or Quit from the tray menu) always fully exits and
-    # removes the firewall rules.
+    # Tray icon
     # ------------------------------------------------------------------
     def _start_tray_icon(self):
         if not TRAY_AVAILABLE or self._tray_pil_image is None:
@@ -1866,8 +1840,7 @@ class ServerSelectorApp(tk.Tk):
         self.after(0, self._on_close)
 
     # ------------------------------------------------------------------
-    # Shutdown: unblock everything so the user isn't left with stale
-    # firewall rules once the app closes.
+    # Shutdown: unblock everything so the user isn't left with stale firewall rules once the app closes.
     # ------------------------------------------------------------------
     def _on_close(self):
         self.status_var.set(self.tr("status_closing"))
