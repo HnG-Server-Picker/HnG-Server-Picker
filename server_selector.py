@@ -1,6 +1,6 @@
-"""
-Server Selector - a small GUI tool for picking which Heroes & Generals server you connect to.
-"""
+
+# Server Selector - a small GUI tool for picking which Heroes & Generals server you connect to.
+
 
 import ctypes
 import concurrent.futures
@@ -31,13 +31,13 @@ except ImportError:
     TRAY_AVAILABLE = False
 
 APP_NAME = "ServerSelector"
-VERSION = "1.2"
+VERSION = "1.3"
 GITHUB_API_LATEST = "https://api.github.com/repos/HnG-Server-Picker/HnG-Server-Picker/releases/latest"
 GITHUB_RELEASES_URL = "https://github.com/HnG-Server-Picker/HnG-Server-Picker/releases"
 RULE_PREFIX = "ServerPicker_"
 BLOCK_PORT = 25000
 CONFIG_PATH = os.path.join(os.path.expanduser("~"), ".server_selector.json")
-CONFIG_VERSION = 5  
+CONFIG_VERSION = 6  
 SETTINGS_PATH = os.path.join(os.path.expanduser("~"), ".server_selector_settings.json")
 FLAG_CACHE_DIR = os.path.join(os.path.expanduser("~"), ".server_selector_flags")
 
@@ -596,7 +596,9 @@ DEFAULT_SERVERS = {
     "France: Roubaix 6":      {"ip": "51.91.214.138",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
     "France: Roubaix 7":      {"ip": "164.132.206.197","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
     "France: Roubaix 8":      {"ip": "164.132.200.214","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "Poland: Warsaw":         {"ip": "51.83.236.30",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#FFFFFF", "#DC143C"], "flag_orientation": "horizontal"},
+    "Poland: Warsaw 1":       {"ip": "51.83.236.30",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#FFFFFF", "#DC143C"], "flag_orientation": "horizontal"},
+    "Poland: Warsaw 2":       {"ip": "54.37.129.170",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#FFFFFF", "#DC143C"], "flag_orientation": "horizontal"},
+    "Poland: Warsaw 3":       {"ip": "54.37.129.163",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#FFFFFF", "#DC143C"], "flag_orientation": "horizontal"},
     "Germany: Wehlheiden":    {"ip": "51.77.67.200",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "Germany: Dietkirchen 1": {"ip": "51.89.21.239",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "Germany: Dietkirchen 2": {"ip": "135.125.188.83", "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
@@ -606,12 +608,13 @@ DEFAULT_SERVERS = {
     "England: London 2":      {"ip": "54.37.245.98",   "region": "EU", "flag_type": "england", "flag_colors": [], "flag_orientation": "solid"},
     "England: London 3":      {"ip": "145.239.204.99", "region": "EU", "flag_type": "england", "flag_colors": [], "flag_orientation": "solid"},
     "England: London 4":      {"ip": "145.239.204.144","region": "EU", "flag_type": "england", "flag_colors": [], "flag_orientation": "solid"},
-    "Canada: Beauharnois":         {"ip": "144.217.77.9",   "region": "Canada", "flag_type": "stripes", "flag_colors": ["#FF0000", "#FFFFFF", "#FF0000"], "flag_orientation": "vertical"},
+    "Canada: Beauharnois":    {"ip": "144.217.77.9",   "region": "Canada", "flag_type": "stripes", "flag_colors": ["#FF0000", "#FFFFFF", "#FF0000"], "flag_orientation": "vertical"},
     "USA: Dallas":            {"ip": "23.29.125.122",  "region": "USA", "flag_type": "us", "flag_colors": [], "flag_orientation": "solid"},
     "USA: Atlanta":           {"ip": "162.213.248.83", "region": "USA", "flag_type": "us", "flag_colors": [], "flag_orientation": "solid"},
-    "Australia: Sydney":      {"ip": "139.99.149.14",  "region": "APAC", "flag_type": "au", "flag_colors": [], "flag_orientation": "solid"},
-    "Singapore":               {"ip": "139.99.120.230", "region": "APAC", "flag_type": "stripes", "flag_colors": ["#EF3340", "#FFFFFF"], "flag_orientation": "horizontal"},
-    "Hong Kong":               {"ip": "135.136.10.86",  "region": "APAC", "flag_type": "hk", "flag_colors": [], "flag_orientation": "solid"},
+    "Australia: Sydney 1":    {"ip": "139.99.149.14",  "region": "APAC", "flag_type": "au", "flag_colors": [], "flag_orientation": "solid"},
+    "Australia: Sydney 2":    {"ip": "139.99.145.9",   "region": "APAC", "flag_type": "au", "flag_colors": [], "flag_orientation": "solid"},
+    "Singapore":              {"ip": "139.99.120.230", "region": "APAC", "flag_type": "stripes", "flag_colors": ["#EF3340", "#FFFFFF"], "flag_orientation": "horizontal"},
+    "Hong Kong":              {"ip": "135.136.10.86",  "region": "APAC", "flag_type": "hk", "flag_colors": [], "flag_orientation": "solid"},
 }
 
 FLAG_PRESETS = {
@@ -787,7 +790,6 @@ def _region_group(name: str, info: dict) -> int:
 
 
 def _country_code_for_server(name: str, info: dict) -> str:
-    """Best-effort: check name prefix then flag_type fallback."""
     for country, code in _FLAG_COUNTRY_CODES.items():
         if name.startswith(country):
             return code
@@ -798,7 +800,6 @@ def _country_code_for_server(name: str, info: dict) -> str:
 
 
 def _fetch_flag_png(country_code: str, width: int = 40):
-    """Download a PNG from flagcdn.com and return the raw bytes, or None on failure."""
     if not country_code:
         return None
     os.makedirs(FLAG_CACHE_DIR, exist_ok=True)
@@ -836,7 +837,6 @@ def make_flag_image(info: dict, name: str = "", width: int = 40, height: int = 2
                 except Exception:
                     pass
 
-    # Fallback: plain grey box with a thin border
     img = tk.PhotoImage(width=width, height=height)
     img.put("#9AA0A6", to=(0, 0, width, height))
     img.put("#888888", to=(0, 0, width, 1))
@@ -1031,12 +1031,11 @@ class ServerSelectorApp(tk.Tk):
 
         self.after(150, self.refresh_pings)
         threading.Thread(target=self._check_for_updates, daemon=True).start()
-        # Restore previously blocked servers (persisted across restarts)
+        # Restore previously blocked servers 
         self.after(200, self._restore_blocked_state)
 
         self._start_tray_icon()
 
-        # Pre-warm the flag image cache in the background so real flags swap in without freezing the UI on first launch.
         threading.Thread(target=self._prefetch_flags, daemon=True).start()
 
         self.deiconify()
@@ -1133,8 +1132,6 @@ class ServerSelectorApp(tk.Tk):
         self.btn_add_server.pack(side="left")
         self.btn_remove_server = tk.Button(btn_frame2, text=self.tr("btn_remove_server"), command=self.remove_server)
         self.btn_remove_server.pack(side="left", padx=6)
-        # Just takes the user to the GitHub releases page - no auto-update
-        # checking happens here.
         self.btn_check_update = tk.Button(btn_frame2, text=self.tr("btn_check_update"), command=self._open_releases_page)
         self.btn_check_update.pack(side="right")
 
@@ -1154,9 +1151,7 @@ class ServerSelectorApp(tk.Tk):
 
 
     def _show_update_banner(self, latest_tag: str):
-        """Shows a slim yellow banner under the header when a new version is available."""
         banner = tk.Frame(self, bg="#fef08a", pady=4)
-        # Insert it just below the header label, above the toolbar
         banner.pack(fill="x", padx=12, after=self.header_label)
 
         msg = tk.Label(
@@ -1185,7 +1180,6 @@ class ServerSelectorApp(tk.Tk):
         ).pack(side="right", padx=4)
 
     def _check_for_updates(self):
-        """Runs on a background thread; posts to main thread if update found."""
         if not self._settings.get("check_updates_on_startup", True):
             return
         latest = fetch_latest_version()
@@ -1197,9 +1191,6 @@ class ServerSelectorApp(tk.Tk):
 
 
     def _open_releases_page(self):
-        """Opens the GitHub releases page in the user's default browser so
-        they can see what's new and grab a newer build manually if they
-        want to."""
         try:
             webbrowser.open(GITHUB_RELEASES_URL)
         except Exception as e:
@@ -1286,8 +1277,6 @@ class ServerSelectorApp(tk.Tk):
         elif col == "status":
             names.sort(key=lambda n: (not self.blocked_state.get(n, False), n.lower()), reverse=rev)
         else:
-            # "Server" column: grouped by macro-region (Europe, North
-            # America, Asia, Australia), alphabetical within each group.
             names.sort(key=lambda n: (_region_group(n, self.servers[n]), n.lower()), reverse=rev)
         return names
 
@@ -1357,7 +1346,6 @@ class ServerSelectorApp(tk.Tk):
         return self._flag_images[name]
 
     def _prefetch_flags(self):
-        """Download all flag images in the background so the UI never stalls."""
         for name, info in list(self.servers.items()):
             code = _country_code_for_server(name, info)
             if code:
@@ -1415,8 +1403,6 @@ class ServerSelectorApp(tk.Tk):
             "lat_num": num_label, "lat_unit": unit_label,
             "status": status_label, "status_cell": status_cell,
         }
-
-        # Bind click handling (with Shift+click range-select support) to the row and every descendant widget inside it, so clicking anywhere on the row triggers selection correctly.
         self._bind_row_click_recursive(row, name)
 
     def _bind_row_click_recursive(self, widget, name):
@@ -1827,7 +1813,6 @@ class ServerSelectorApp(tk.Tk):
         return pystray.Icon(APP_NAME, self._tray_pil_image, self.tr("app_title"), menu)
 
     def _on_tray_open(self, icon, item):
-        # Runs on pystray's own thread - hop back onto the Tk main thread.
         self.after(0, self._bring_to_front)
 
     def _bring_to_front(self):
@@ -1836,7 +1821,6 @@ class ServerSelectorApp(tk.Tk):
         self.focus_force()
 
     def _on_tray_quit(self, icon, item):
-        # Runs on pystray's own thread - hop back onto the Tk main thread.
         self.after(0, self._on_close)
 
     # ------------------------------------------------------------------
@@ -1857,7 +1841,6 @@ class ServerSelectorApp(tk.Tk):
 
 
 def fetch_latest_version() -> str | None:
-    """Returns the latest release tag from GitHub (e.g. 'v1.1'), or None on failure."""
     try:
         req = urllib.request.Request(
             GITHUB_API_LATEST,
@@ -1871,7 +1854,6 @@ def fetch_latest_version() -> str | None:
 
 
 def _version_tuple(tag: str) -> tuple:
-    """Converts 'v1.2.3' or '1.2.3' to (1, 2, 3) for comparison."""
     tag = tag.lstrip("v")
     try:
         return tuple(int(x) for x in tag.split("."))
