@@ -31,13 +31,13 @@ except ImportError:
     TRAY_AVAILABLE = False
 
 APP_NAME = "ServerSelector"
-VERSION = "1.3"
+VERSION = "1.4"
 GITHUB_API_LATEST = "https://api.github.com/repos/HnG-Server-Picker/HnG-Server-Picker/releases/latest"
 GITHUB_RELEASES_URL = "https://github.com/HnG-Server-Picker/HnG-Server-Picker/releases"
 RULE_PREFIX = "ServerPicker_"
 BLOCK_PORT = 25000
 CONFIG_PATH = os.path.join(os.path.expanduser("~"), ".server_selector.json")
-CONFIG_VERSION = 6  
+CONFIG_VERSION = 8 
 SETTINGS_PATH = os.path.join(os.path.expanduser("~"), ".server_selector_settings.json")
 FLAG_CACHE_DIR = os.path.join(os.path.expanduser("~"), ".server_selector_flags")
 
@@ -590,12 +590,11 @@ COLOR_RED_ACTIVE = "#8e1c1c"
 DEFAULT_SERVERS = {
     "France: Roubaix 1":      {"ip": "37.187.226.17",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
     "France: Roubaix 2":      {"ip": "149.202.215.48", "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 3":      {"ip": "51.75.119.5",    "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 4":      {"ip": "51.91.74.237",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 5":      {"ip": "51.91.214.145",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 6":      {"ip": "51.91.214.138",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 7":      {"ip": "164.132.206.197","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 8":      {"ip": "164.132.200.214","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
+    "France: Roubaix 3":      {"ip": "51.91.74.237",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
+    "France: Roubaix 4":      {"ip": "51.91.214.145",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
+    "France: Roubaix 5":      {"ip": "51.91.214.138",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
+    "France: Roubaix 6":      {"ip": "164.132.206.197","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
+    "France: Roubaix 7":      {"ip": "164.132.200.214","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
     "Poland: Warsaw 1":       {"ip": "51.83.236.30",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#FFFFFF", "#DC143C"], "flag_orientation": "horizontal"},
     "Poland: Warsaw 2":       {"ip": "54.37.129.170",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#FFFFFF", "#DC143C"], "flag_orientation": "horizontal"},
     "Poland: Warsaw 3":       {"ip": "54.37.129.163",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#FFFFFF", "#DC143C"], "flag_orientation": "horizontal"},
@@ -604,6 +603,7 @@ DEFAULT_SERVERS = {
     "Germany: Dietkirchen 2": {"ip": "135.125.188.83", "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "Germany: Dietkirchen 3": {"ip": "135.125.188.85", "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "Germany: Dietkirchen 4": {"ip": "135.125.188.42", "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
+    "Germany: Dietkirchen 5": {"ip": "135.125.188.4",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "England: London 1":      {"ip": "54.37.245.86",   "region": "EU", "flag_type": "england", "flag_colors": [], "flag_orientation": "solid"},
     "England: London 2":      {"ip": "54.37.245.98",   "region": "EU", "flag_type": "england", "flag_colors": [], "flag_orientation": "solid"},
     "England: London 3":      {"ip": "145.239.204.99", "region": "EU", "flag_type": "england", "flag_colors": [], "flag_orientation": "solid"},
@@ -611,6 +611,7 @@ DEFAULT_SERVERS = {
     "Canada: Beauharnois":    {"ip": "144.217.77.9",   "region": "Canada", "flag_type": "stripes", "flag_colors": ["#FF0000", "#FFFFFF", "#FF0000"], "flag_orientation": "vertical"},
     "USA: Dallas":            {"ip": "23.29.125.122",  "region": "USA", "flag_type": "us", "flag_colors": [], "flag_orientation": "solid"},
     "USA: Atlanta":           {"ip": "162.213.248.83", "region": "USA", "flag_type": "us", "flag_colors": [], "flag_orientation": "solid"},
+    "Brazil: Horizonte":      {"ip": "24.152.39.156",  "region": "South America", "flag_type": "br", "flag_colors": [], "flag_orientation": "solid"},
     "Australia: Sydney 1":    {"ip": "139.99.149.14",  "region": "APAC", "flag_type": "au", "flag_colors": [], "flag_orientation": "solid"},
     "Australia: Sydney 2":    {"ip": "139.99.145.9",   "region": "APAC", "flag_type": "au", "flag_colors": [], "flag_orientation": "solid"},
     "Singapore":              {"ip": "139.99.120.230", "region": "APAC", "flag_type": "stripes", "flag_colors": ["#EF3340", "#FFFFFF"], "flag_orientation": "horizontal"},
@@ -627,6 +628,7 @@ FLAG_PRESETS = {
     "Australia":       {"flag_type": "au", "flag_colors": [], "flag_orientation": "solid"},
     "Singapore":       {"flag_type": "stripes", "flag_colors": ["#EF3340", "#FFFFFF"], "flag_orientation": "horizontal"},
     "Hong Kong":       {"flag_type": "hk", "flag_colors": [], "flag_orientation": "solid"},
+    "Brazil":          {"flag_type": "br", "flag_colors": [], "flag_orientation": "solid"},
     "Other / Unknown": {"flag_type": "stripes", "flag_colors": ["#9AA0A6"], "flag_orientation": "solid"},
 }
 
@@ -640,6 +642,7 @@ _FLAG_COUNTRY_CODES = {
     "Australia":       "au",
     "Singapore":       "sg",
     "Hong Kong":       "hk",
+    "Brazil":          "br",
 }
 
 
@@ -795,7 +798,7 @@ def _country_code_for_server(name: str, info: dict) -> str:
             return code
     ft = info.get("flag_type", "")
     return {
-        "us": "us", "au": "au", "hk": "hk", "england": "gb-eng",
+        "us": "us", "au": "au", "hk": "hk", "england": "gb-eng", "br": "br",
     }.get(ft, "")
 
 
