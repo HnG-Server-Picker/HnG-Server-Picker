@@ -31,13 +31,13 @@ except ImportError:
     TRAY_AVAILABLE = False
 
 APP_NAME = "ServerSelector"
-VERSION = "1.4"
+VERSION = "1.5"
 GITHUB_API_LATEST = "https://api.github.com/repos/HnG-Server-Picker/HnG-Server-Picker/releases/latest"
 GITHUB_RELEASES_URL = "https://github.com/HnG-Server-Picker/HnG-Server-Picker/releases"
 RULE_PREFIX = "ServerPicker_"
 BLOCK_PORT = 25000
 CONFIG_PATH = os.path.join(os.path.expanduser("~"), ".server_selector.json")
-CONFIG_VERSION = 8 
+CONFIG_VERSION = 9 
 SETTINGS_PATH = os.path.join(os.path.expanduser("~"), ".server_selector_settings.json")
 FLAG_CACHE_DIR = os.path.join(os.path.expanduser("~"), ".server_selector_flags")
 
@@ -589,16 +589,13 @@ COLOR_RED_ACTIVE = "#8e1c1c"
 # Known Heroes & Generals servers
 DEFAULT_SERVERS = {
     "France: Roubaix 1":      {"ip": "37.187.226.17",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 2":      {"ip": "149.202.215.48", "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 3":      {"ip": "51.91.74.237",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 4":      {"ip": "51.91.214.145",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 5":      {"ip": "51.91.214.138",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 6":      {"ip": "164.132.206.197","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
-    "France: Roubaix 7":      {"ip": "164.132.200.214","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
+    "France: Roubaix 2":      {"ip": "51.91.214.145",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
+    "France: Roubaix 3":      {"ip": "51.91.214.138",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
+    "France: Roubaix 4":      {"ip": "164.132.206.197","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
+    "France: Roubaix 5":      {"ip": "164.132.200.214","region": "EU", "flag_type": "stripes", "flag_colors": ["#0055A4", "#FFFFFF", "#EF4135"], "flag_orientation": "vertical"},
     "Poland: Warsaw 1":       {"ip": "51.83.236.30",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#FFFFFF", "#DC143C"], "flag_orientation": "horizontal"},
     "Poland: Warsaw 2":       {"ip": "54.37.129.170",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#FFFFFF", "#DC143C"], "flag_orientation": "horizontal"},
     "Poland: Warsaw 3":       {"ip": "54.37.129.163",  "region": "EU", "flag_type": "stripes", "flag_colors": ["#FFFFFF", "#DC143C"], "flag_orientation": "horizontal"},
-    "Germany: Wehlheiden":    {"ip": "51.77.67.200",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "Germany: Dietkirchen 1": {"ip": "51.89.21.239",   "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "Germany: Dietkirchen 2": {"ip": "135.125.188.83", "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
     "Germany: Dietkirchen 3": {"ip": "135.125.188.85", "region": "EU", "flag_type": "stripes", "flag_colors": ["#000000", "#DD0000", "#FFCE00"], "flag_orientation": "horizontal"},
@@ -616,6 +613,7 @@ DEFAULT_SERVERS = {
     "Australia: Sydney 2":    {"ip": "139.99.145.9",   "region": "APAC", "flag_type": "au", "flag_colors": [], "flag_orientation": "solid"},
     "Singapore":              {"ip": "139.99.120.230", "region": "APAC", "flag_type": "stripes", "flag_colors": ["#EF3340", "#FFFFFF"], "flag_orientation": "horizontal"},
     "Hong Kong":              {"ip": "135.136.10.86",  "region": "APAC", "flag_type": "hk", "flag_colors": [], "flag_orientation": "solid"},
+    "Philippines: Makati":    {"ip": "151.242.136.30", "region": "APAC", "flag_type": "ph", "flag_colors": [], "flag_orientation": "solid"},
 }
 
 FLAG_PRESETS = {
@@ -629,6 +627,7 @@ FLAG_PRESETS = {
     "Singapore":       {"flag_type": "stripes", "flag_colors": ["#EF3340", "#FFFFFF"], "flag_orientation": "horizontal"},
     "Hong Kong":       {"flag_type": "hk", "flag_colors": [], "flag_orientation": "solid"},
     "Brazil":          {"flag_type": "br", "flag_colors": [], "flag_orientation": "solid"},
+    "Philippines":     {"flag_type": "ph", "flag_colors": [], "flag_orientation": "solid"},
     "Other / Unknown": {"flag_type": "stripes", "flag_colors": ["#9AA0A6"], "flag_orientation": "solid"},
 }
 
@@ -643,6 +642,7 @@ _FLAG_COUNTRY_CODES = {
     "Singapore":       "sg",
     "Hong Kong":       "hk",
     "Brazil":          "br",
+    "Philippines":     "ph",
 }
 
 
@@ -717,28 +717,75 @@ CREATE_NO_WINDOW = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
 SINGLE_RULE_NAME = f"{RULE_PREFIX}Block"
 
 
+_firewall_lock = threading.Lock()
+_firewall_stopping = threading.Event()
+
+
 def sync_block_rule(ips) -> tuple:
-    subprocess.run(
-        ["netsh", "advfirewall", "firewall", "delete", "rule", f"name={SINGLE_RULE_NAME}"],
-        capture_output=True, text=True, creationflags=CREATE_NO_WINDOW
-    )
-    if not ips:
-        return True, ""
-    cmd = [
-        "netsh", "advfirewall", "firewall", "add", "rule",
-        f"name={SINGLE_RULE_NAME}", "dir=out", "action=block", "protocol=UDP",
-        f"remoteip={','.join(ips)}", f"remoteport={BLOCK_PORT}", "profile=any", "enable=yes",
-    ]
-    result = subprocess.run(cmd, capture_output=True, text=True, creationflags=CREATE_NO_WINDOW)
-    ok = result.returncode == 0
-    return ok, (result.stdout if ok else (result.stderr or result.stdout))
+    with _firewall_lock:
+        if _firewall_stopping.is_set():
+            return False, "The app is closing."
+
+        try:
+            subprocess.run(
+                [
+                    "netsh", "advfirewall", "firewall", "delete",
+                    "rule", f"name={SINGLE_RULE_NAME}",
+                ],
+                capture_output=True,
+                text=True,
+                creationflags=CREATE_NO_WINDOW,
+                timeout=3,
+            )
+
+            if not ips:
+                return True, ""
+
+            # Shutdown may have started while netsh was running.
+            if _firewall_stopping.is_set():
+                return False, "The app is closing."
+
+            cmd = [
+                "netsh", "advfirewall", "firewall", "add", "rule",
+                f"name={SINGLE_RULE_NAME}",
+                "dir=out",
+                "action=block",
+                "protocol=UDP",
+                f"remoteip={','.join(ips)}",
+                f"remoteport={BLOCK_PORT}",
+                "profile=any",
+                "enable=yes",
+            ]
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                creationflags=CREATE_NO_WINDOW,
+                timeout=3,
+            )
+            ok = result.returncode == 0
+            return ok, (
+                result.stdout if ok else (result.stderr or result.stdout)
+            )
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            return False, str(exc)
 
 
 def cleanup_all_rules():
-    subprocess.run(
-        ["netsh", "advfirewall", "firewall", "delete", "rule", f"name={SINGLE_RULE_NAME}"],
-        capture_output=True, text=True, creationflags=CREATE_NO_WINDOW
-    )
+    # Prevent background workers from recreating the rule.
+    _firewall_stopping.set()
+
+    with _firewall_lock:
+        subprocess.run(
+            [
+                "netsh", "advfirewall", "firewall", "delete",
+                "rule", f"name={SINGLE_RULE_NAME}",
+            ],
+            capture_output=True,
+            text=True,
+            creationflags=CREATE_NO_WINDOW,
+            timeout=3,
+        )
 
 _TIME_RE = re.compile(r"[=<]\s*(\d+)\s*ms", re.IGNORECASE)
 _IPV4_RE = re.compile(r"^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$")
@@ -794,11 +841,11 @@ def _region_group(name: str, info: dict) -> int:
 
 def _country_code_for_server(name: str, info: dict) -> str:
     for country, code in _FLAG_COUNTRY_CODES.items():
-        if name.startswith(country):
+        if name.startswith(country) or info.get("country") == country:
             return code
     ft = info.get("flag_type", "")
     return {
-        "us": "us", "au": "au", "hk": "hk", "england": "gb-eng", "br": "br",
+        "us": "us", "au": "au", "hk": "hk", "england": "gb-eng", "br": "br", "ph": "ph",
     }.get(ft, "")
 
 
@@ -902,7 +949,8 @@ class SettingsDialog(tk.Toplevel):
 
         tk.Button(body, text=app.tr("btn_ok"), command=self.destroy).pack(anchor="e", pady=(16, 0))
 
-        self.protocol("WM_DELETE_WINDOW", self.destroy)
+        self.protocol("WM_DELETE_WINDOW", self._on_close)
+        self._install_shutdown_handler()
 
         self.update_idletasks()
         w, h = self.winfo_width(), self.winfo_height()
@@ -1612,7 +1660,7 @@ class ServerSelectorApp(tk.Tk):
         flag_choice = flag_dialog.result
         preset = FLAG_PRESETS.get(flag_choice, FLAG_PRESETS["Other / Unknown"])
 
-        info = {"ip": ip, "region": "Custom"}
+        info = {"ip": ip, "region": "Custom", "country": flag_choice}
         info.update(preset)
         self.servers[name] = info
         self.latencies[name] = None
@@ -1825,6 +1873,90 @@ class ServerSelectorApp(tk.Tk):
 
     def _on_tray_quit(self, icon, item):
         self.after(0, self._on_close)
+
+
+    def _install_shutdown_handler(self):
+        if os.name != "nt":
+            return
+
+        from ctypes import wintypes
+
+        self.update_idletasks()
+
+        user32 = ctypes.WinDLL("user32", use_last_error=True)
+        comctl32 = ctypes.WinDLL("comctl32", use_last_error=True)
+
+        # Pointer-sized types support both 32-bit and 64-bit Python.
+        callback_type = ctypes.WINFUNCTYPE(
+            ctypes.c_ssize_t,    # LRESULT
+            wintypes.HWND,
+            wintypes.UINT,
+            ctypes.c_size_t,     # WPARAM
+            ctypes.c_ssize_t,    # LPARAM
+            ctypes.c_size_t,     # subclass ID
+            ctypes.c_size_t,     # reference data
+        )
+
+        user32.GetAncestor.argtypes = [
+            wintypes.HWND, wintypes.UINT
+        ]
+        user32.GetAncestor.restype = wintypes.HWND
+
+        comctl32.SetWindowSubclass.argtypes = [
+            wintypes.HWND, callback_type,
+            ctypes.c_size_t, ctypes.c_size_t,
+        ]
+        comctl32.SetWindowSubclass.restype = wintypes.BOOL
+
+        comctl32.RemoveWindowSubclass.argtypes = [
+            wintypes.HWND, callback_type, ctypes.c_size_t,
+        ]
+        comctl32.RemoveWindowSubclass.restype = wintypes.BOOL
+
+        comctl32.DefSubclassProc.argtypes = [
+            wintypes.HWND, wintypes.UINT,
+            ctypes.c_size_t, ctypes.c_ssize_t,
+        ]
+        comctl32.DefSubclassProc.restype = ctypes.c_ssize_t
+
+        def handle_message(hwnd, msg, wparam, lparam, subclass_id, data):
+            if msg == 0x0011:  # WM_QUERYENDSESSION
+                return 1  # Allow Windows to shut down.
+
+            if msg == 0x0016:  # WM_ENDSESSION
+                if wparam:
+                    # Finish cleanup here, not in a background thread.
+                    try:
+                        cleanup_all_rules()
+                    except Exception as exc:
+                        if sys.stderr is not None:
+                            print(
+                                f"Firewall cleanup failed: {exc}",
+                                file=sys.stderr,
+                            )
+                return 0
+
+            if msg == 0x0082:  # WM_NCDESTROY
+                comctl32.RemoveWindowSubclass(
+                    hwnd, self._shutdown_callback, subclass_id
+                )
+
+            return comctl32.DefSubclassProc(
+                hwnd, msg, wparam, lparam
+            )
+
+        # Keep the callback alive while Windows uses it.
+        self._shutdown_callback = callback_type(handle_message)
+
+        # Tk's outer window receives Windows shutdown messages.
+        hwnd = user32.GetAncestor(self.winfo_id(), 2)  # GA_ROOT
+        if not hwnd:
+            raise RuntimeError("Could not find the app's Windows handle.")
+
+        if not comctl32.SetWindowSubclass(
+            hwnd, self._shutdown_callback, 1, 0
+        ):
+            raise RuntimeError("Could not install the shutdown handler.")
 
     # ------------------------------------------------------------------
     # Shutdown: unblock everything so the user isn't left with stale firewall rules once the app closes.
